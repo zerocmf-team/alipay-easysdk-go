@@ -1,0 +1,245 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="7093645d-b51c-4f58-bb00-0209a4110b62" name="Default Changelist" comment="" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Go File" />
+      </list>
+    </option>
+  </component>
+  <component name="GOROOT" path="/usr/local/go" />
+  <component name="ProjectId" id="1h60HsX3cLY0vPoc2l3GSThbgXJ" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="DefaultGoTemplateProperty" value="Go File" />
+    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="configurable.Global.GOPATH.is.expanded" value="true" />
+    <property name="configurable.Module.GOPATH.is.expanded" value="false" />
+    <property name="configurable.Project.GOPATH.is.expanded" value="true" />
+    <property name="go.import.settings.migrated" value="true" />
+    <property name="go.tried.to.enable.integration.vgo.integrator" value="true" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/pem/ruyi" />
+    <property name="node.js.detected.package.eslint" value="true" />
+    <property name="node.js.detected.package.tslint" value="true" />
+    <property name="node.js.path.for.package.eslint" value="project" />
+    <property name="node.js.path.for.package.tslint" value="project" />
+    <property name="node.js.selected.package.eslint" value="(autodetect)" />
+    <property name="node.js.selected.package.tslint" value="(autodetect)" />
+    <property name="settings.editor.selected.configurable" value="editor.preferences.fonts.default" />
+  </component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/pem/ruyi" />
+      <recent name="$PROJECT_DIR$/merchant" />
+      <recent name="$PROJECT_DIR$/marketing" />
+      <recent name="$PROJECT_DIR$/util" />
+      <recent name="$PROJECT_DIR$" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/iot/commerce" />
+      <recent name="$PROJECT_DIR$/base" />
+      <recent name="$PROJECT_DIR$/pem" />
+    </key>
+  </component>
+  <component name="RunManager" selected="Go Test.TestAssets_Upload in github.com/gincmf/alipayEasySdk/base">
+    <configuration name="go build alipay-easysdk-go" type="GoApplicationRunConfiguration" factoryName="Go Application" nameIsGenerated="true">
+      <module name="alipay-easysdk-go" />
+      <working_directory value="$PROJECT_DIR$" />
+      <go_parameters value="-i" />
+      <kind value="PACKAGE" />
+      <filePath value="$PROJECT_DIR$" />
+      <package value="alipay-easysdk-go" />
+      <directory value="$PROJECT_DIR$" />
+      <method v="2" />
+    </configuration>
+    <configuration name="TestAssets_Upload in github.com/gincmf/alipayEasySdk/base" type="GoTestRunConfiguration" factoryName="Go Test" temporary="true" nameIsGenerated="true">
+      <module name="alipay-easysdk-go" />
+      <working_directory value="$PROJECT_DIR$/base" />
+      <framework value="gotest" />
+      <kind value="PACKAGE" />
+      <package value="github.com/gincmf/alipayEasySdk/base" />
+      <directory value="$PROJECT_DIR$" />
+      <filePath value="$PROJECT_DIR$" />
+      <pattern value="^\QTestAssets_Upload\E$" />
+      <method v="2" />
+    </configuration>
+    <configuration name="TestCashlessVoucher_Send in github.com/gincmf/alipayEasySdk/marketing" type="GoTestRunConfiguration" factoryName="Go Test" temporary="true" nameIsGenerated="true">
+      <module name="alipay-easysdk-go" />
+      <working_directory value="$PROJECT_DIR$/marketing" />
+      <framework value="gotest" />
+      <kind value="PACKAGE" />
+      <package value="github.com/gincmf/alipayEasySdk/marketing" />
+      <directory value="$PROJECT_DIR$" />
+      <filePath value="$PROJECT_DIR$" />
+      <pattern value="^\QTestCashlessVoucher_Send\E$" />
+      <method v="2" />
+    </configuration>
+    <configuration name="TestCommerce_Bind in github.com/gincmf/alipayEasySdk/ruyi" type="GoTestRunConfiguration" factoryName="Go Test" temporary="true" nameIsGenerated="true">
+      <module name="alipay-easysdk-go" />
+      <working_directory value="$PROJECT_DIR$/ruyi" />
+      <framework value="gotest" />
+      <kind value="PACKAGE" />
+      <package value="github.com/gincmf/alipayEasySdk/ruyi" />
+      <directory value="$PROJECT_DIR$" />
+      <filePath value="$PROJECT_DIR$" />
+      <pattern value="^\QTestCommerce_Bind\E$" />
+      <method v="2" />
+    </configuration>
+    <configuration name="TestGetSystemToken in github.com/gincmf/alipayEasySdk/base" type="GoTestRunConfiguration" factoryName="Go Test" temporary="true" nameIsGenerated="true">
+      <module name="alipay-easysdk-go" />
+      <working_directory value="$PROJECT_DIR$/base" />
+      <framework value="gotest" />
+      <kind value="PACKAGE" />
+      <package value="github.com/gincmf/alipayEasySdk/base" />
+      <directory value="$PROJECT_DIR$" />
+      <filePath value="$PROJECT_DIR$" />
+      <pattern value="^\QTestGetSystemToken\E$" />
+      <method v="2" />
+    </configuration>
+    <configuration name="TestShop_QueryStatus in github.com/gincmf/alipayEasySdk/merchant" type="GoTestRunConfiguration" factoryName="Go Test" temporary="true" nameIsGenerated="true">
+      <module name="alipay-easysdk-go" />
+      <working_directory value="$PROJECT_DIR$/merchant" />
+      <framework value="gotest" />
+      <kind value="PACKAGE" />
+      <package value="github.com/gincmf/alipayEasySdk/merchant" />
+      <directory value="$PROJECT_DIR$" />
+      <filePath value="$PROJECT_DIR$" />
+      <pattern value="^\QTestShop_QueryStatus\E$" />
+      <method v="2" />
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Go Test.TestAssets_Upload in github.com/gincmf/alipayEasySdk/base" />
+        <item itemvalue="Go Test.TestGetSystemToken in github.com/gincmf/alipayEasySdk/base" />
+        <item itemvalue="Go Test.TestShop_QueryStatus in github.com/gincmf/alipayEasySdk/merchant" />
+        <item itemvalue="Go Test.TestCashlessVoucher_Send in github.com/gincmf/alipayEasySdk/marketing" />
+        <item itemvalue="Go Test.TestCommerce_Bind in github.com/gincmf/alipayEasySdk/ruyi" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="VgoProject">
+    <integration-enabled>true</integration-enabled>
+    <environment>
+      <map>
+        <entry key="GOPROXY" value="goproxy.cn" />
+      </map>
+    </environment>
+  </component>
+  <component name="WindowStateProjectService">
+    <state x="420" y="245" key="#com.intellij.fileTypes.FileTypeChooser" timestamp="1606551629510">
+      <screen x="0" y="23" width="1440" height="827" />
+    </state>
+    <state x="420" y="245" key="#com.intellij.fileTypes.FileTypeChooser/0.23.1440.827@0.23.1440.827" timestamp="1606551629510" />
+    <state width="1398" height="239" key="GridCell.Tab.0.bottom" timestamp="1609646260888">
+      <screen x="0" y="0" width="1440" height="900" />
+    </state>
+    <state width="1398" height="239" key="GridCell.Tab.0.bottom/0.0.1440.900@0.0.1440.900" timestamp="1609646260888" />
+    <state width="1398" height="198" key="GridCell.Tab.0.bottom/0.23.1440.823@0.23.1440.823" timestamp="1608470039250" />
+    <state width="1398" height="239" key="GridCell.Tab.0.bottom/0.23.1440.825@0.23.1440.825" timestamp="1609426977158" />
+    <state width="1398" height="205" key="GridCell.Tab.0.bottom/0.23.1440.826@0.23.1440.826" timestamp="1607570786062" />
+    <state width="1398" height="205" key="GridCell.Tab.0.bottom/0.23.1440.827@0.23.1440.827" timestamp="1607574200122" />
+    <state width="1398" height="202" key="GridCell.Tab.0.bottom/0.23.1440.828@0.23.1440.828" timestamp="1607528686092" />
+    <state width="1398" height="280" key="GridCell.Tab.0.bottom/0.23.1440.829@0.23.1440.829" timestamp="1607655806349" />
+    <state width="1398" height="280" key="GridCell.Tab.0.bottom/0.23.1440.830@0.23.1440.830" timestamp="1607768623502" />
+    <state width="1398" height="280" key="GridCell.Tab.0.bottom/0.23.1440.831@0.23.1440.831" timestamp="1607591571039" />
+    <state width="1398" height="239" key="GridCell.Tab.0.center" timestamp="1609646260886">
+      <screen x="0" y="0" width="1440" height="900" />
+    </state>
+    <state width="1398" height="239" key="GridCell.Tab.0.center/0.0.1440.900@0.0.1440.900" timestamp="1609646260886" />
+    <state width="1398" height="198" key="GridCell.Tab.0.center/0.23.1440.823@0.23.1440.823" timestamp="1608470039246" />
+    <state width="1398" height="239" key="GridCell.Tab.0.center/0.23.1440.825@0.23.1440.825" timestamp="1609426977157" />
+    <state width="1398" height="205" key="GridCell.Tab.0.center/0.23.1440.826@0.23.1440.826" timestamp="1607570786061" />
+    <state width="1398" height="205" key="GridCell.Tab.0.center/0.23.1440.827@0.23.1440.827" timestamp="1607574200122" />
+    <state width="1398" height="202" key="GridCell.Tab.0.center/0.23.1440.828@0.23.1440.828" timestamp="1607528686091" />
+    <state width="1398" height="280" key="GridCell.Tab.0.center/0.23.1440.829@0.23.1440.829" timestamp="1607655806348" />
+    <state width="1398" height="280" key="GridCell.Tab.0.center/0.23.1440.830@0.23.1440.830" timestamp="1607768623501" />
+    <state width="1398" height="280" key="GridCell.Tab.0.center/0.23.1440.831@0.23.1440.831" timestamp="1607591571038" />
+    <state width="1398" height="239" key="GridCell.Tab.0.left" timestamp="1609646260885">
+      <screen x="0" y="0" width="1440" height="900" />
+    </state>
+    <state width="1398" height="239" key="GridCell.Tab.0.left/0.0.1440.900@0.0.1440.900" timestamp="1609646260885" />
+    <state width="1398" height="364" key="GridCell.Tab.0.left/0.23.1440.822@0.23.1440.822" timestamp="1608532583154" />
+    <state width="1398" height="198" key="GridCell.Tab.0.left/0.23.1440.823@0.23.1440.823" timestamp="1608470039245" />
+    <state width="1398" height="239" key="GridCell.Tab.0.left/0.23.1440.825@0.23.1440.825" timestamp="1609426977155" />
+    <state width="1398" height="205" key="GridCell.Tab.0.left/0.23.1440.826@0.23.1440.826" timestamp="1607570786061" />
+    <state width="1398" height="205" key="GridCell.Tab.0.left/0.23.1440.827@0.23.1440.827" timestamp="1607574200121" />
+    <state width="1398" height="202" key="GridCell.Tab.0.left/0.23.1440.828@0.23.1440.828" timestamp="1607528686091" />
+    <state width="1398" height="280" key="GridCell.Tab.0.left/0.23.1440.829@0.23.1440.829" timestamp="1607655806348" />
+    <state width="1398" height="280" key="GridCell.Tab.0.left/0.23.1440.830@0.23.1440.830" timestamp="1607768623501" />
+    <state width="1398" height="280" key="GridCell.Tab.0.left/0.23.1440.831@0.23.1440.831" timestamp="1607591571038" />
+    <state width="1398" height="239" key="GridCell.Tab.0.right" timestamp="1609646260887">
+      <screen x="0" y="0" width="1440" height="900" />
+    </state>
+    <state width="1398" height="239" key="GridCell.Tab.0.right/0.0.1440.900@0.0.1440.900" timestamp="1609646260887" />
+    <state width="1398" height="198" key="GridCell.Tab.0.right/0.23.1440.823@0.23.1440.823" timestamp="1608470039246" />
+    <state width="1398" height="239" key="GridCell.Tab.0.right/0.23.1440.825@0.23.1440.825" timestamp="1609426977158" />
+    <state width="1398" height="205" key="GridCell.Tab.0.right/0.23.1440.826@0.23.1440.826" timestamp="1607570786062" />
+    <state width="1398" height="205" key="GridCell.Tab.0.right/0.23.1440.827@0.23.1440.827" timestamp="1607574200122" />
+    <state width="1398" height="202" key="GridCell.Tab.0.right/0.23.1440.828@0.23.1440.828" timestamp="1607528686092" />
+    <state width="1398" height="280" key="GridCell.Tab.0.right/0.23.1440.829@0.23.1440.829" timestamp="1607655806349" />
+    <state width="1398" height="280" key="GridCell.Tab.0.right/0.23.1440.830@0.23.1440.830" timestamp="1607768623502" />
+    <state width="1398" height="280" key="GridCell.Tab.0.right/0.23.1440.831@0.23.1440.831" timestamp="1607591571038" />
+    <state width="1398" height="265" key="GridCell.Tab.1.bottom" timestamp="1607769568262">
+      <screen x="0" y="23" width="1440" height="825" />
+    </state>
+    <state width="1398" height="265" key="GridCell.Tab.1.bottom/0.23.1440.825@0.23.1440.825" timestamp="1607769568262" />
+    <state width="1398" height="265" key="GridCell.Tab.1.bottom/0.23.1440.830@0.23.1440.830" timestamp="1607591259545" />
+    <state width="1398" height="265" key="GridCell.Tab.1.center" timestamp="1607769568254">
+      <screen x="0" y="23" width="1440" height="825" />
+    </state>
+    <state width="1398" height="265" key="GridCell.Tab.1.center/0.23.1440.825@0.23.1440.825" timestamp="1607769568254" />
+    <state width="1398" height="265" key="GridCell.Tab.1.center/0.23.1440.830@0.23.1440.830" timestamp="1607591259544" />
+    <state width="1398" height="265" key="GridCell.Tab.1.left" timestamp="1607769568254">
+      <screen x="0" y="23" width="1440" height="825" />
+    </state>
+    <state width="1398" height="265" key="GridCell.Tab.1.left/0.23.1440.825@0.23.1440.825" timestamp="1607769568254" />
+    <state width="1398" height="265" key="GridCell.Tab.1.left/0.23.1440.830@0.23.1440.830" timestamp="1607591259544" />
+    <state width="1398" height="265" key="GridCell.Tab.1.right" timestamp="1607769568261">
+      <screen x="0" y="23" width="1440" height="825" />
+    </state>
+    <state width="1398" height="265" key="GridCell.Tab.1.right/0.23.1440.825@0.23.1440.825" timestamp="1607769568261" />
+    <state width="1398" height="265" key="GridCell.Tab.1.right/0.23.1440.830@0.23.1440.830" timestamp="1607591259544" />
+    <state x="221" y="89" key="SettingsEditor" timestamp="1609219236606">
+      <screen x="0" y="0" width="1440" height="900" />
+    </state>
+    <state x="221" y="89" key="SettingsEditor/0.0.1440.900@0.0.1440.900" timestamp="1609219236606" />
+    <state x="100" y="110" width="1240" height="681" key="com.intellij.history.integration.ui.views.FileHistoryDialog" timestamp="1609310457538">
+      <screen x="0" y="0" width="1440" height="900" />
+    </state>
+    <state x="100" y="110" width="1240" height="681" key="com.intellij.history.integration.ui.views.FileHistoryDialog/0.0.1440.900@0.0.1440.900" timestamp="1609310457538" />
+    <state x="100" y="123" width="1240" height="624" key="com.intellij.history.integration.ui.views.FileHistoryDialog/0.23.1440.825@0.23.1440.825" timestamp="1607491968720" />
+    <state x="100" y="124" width="1240" height="628" key="com.intellij.history.integration.ui.views.FileHistoryDialog/0.23.1440.830@0.23.1440.830" timestamp="1607599032361" />
+    <state x="421" y="183" width="598" height="534" key="find.popup" timestamp="1609172139458">
+      <screen x="0" y="0" width="1440" height="900" />
+    </state>
+    <state x="421" y="183" width="598" height="534" key="find.popup/0.0.1440.900@0.0.1440.900" timestamp="1609172139458" />
+    <state x="421" y="191" width="598" height="490" key="find.popup/0.23.1440.826@0.23.1440.826" timestamp="1607568919114" />
+    <state x="421" y="191" width="598" height="490" key="find.popup/0.23.1440.827@0.23.1440.827" timestamp="1606655487992" />
+    <state x="385" y="196" width="670" height="676" key="search.everywhere.popup" timestamp="1609309678882">
+      <screen x="0" y="0" width="1440" height="900" />
+    </state>
+    <state x="385" y="196" width="670" height="676" key="search.everywhere.popup/0.0.1440.900@0.0.1440.900" timestamp="1609309678882" />
+    <state x="385" y="203" width="670" height="622" key="search.everywhere.popup/0.23.1440.826@0.23.1440.826" timestamp="1607568301823" />
+    <state x="385" y="203" width="670" height="622" key="search.everywhere.popup/0.23.1440.827@0.23.1440.827" timestamp="1607573307365" />
+    <state x="385" y="204" width="670" height="625" key="search.everywhere.popup/0.23.1440.829@0.23.1440.829" timestamp="1607654748279" />
+    <state x="385" y="204" width="670" height="625" key="search.everywhere.popup/0.23.1440.830@0.23.1440.830" timestamp="1607758927200" />
+  </component>
+</project>
