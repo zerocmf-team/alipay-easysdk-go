@@ -29,7 +29,7 @@ type Result struct {
 	Sign     string         `json:"sign"`
 }
 
-func (rest *Image) Upload(bizContent map[string]string, filename string) (Result,error) {
+func (rest *Image) Upload(bizContent map[string]string, filepath string) (Result,error) {
 
 	params := util.GetParams("alipay.offline.material.image.upload", "")
 
@@ -43,14 +43,14 @@ func (rest *Image) Upload(bizContent map[string]string, filename string) (Result
 	bodyBuf := &bytes.Buffer{}
 	bodyWrite := multipart.NewWriter(bodyBuf)
 
-	file, err := os.Open(filename)
+	file, err := os.Open(filepath)
 	defer file.Close()
 	if err != nil {
 		fmt.Println("加载文件失败", err)
 		return Result{},err
 	}
 
-	fileWrite, err := bodyWrite.CreateFormFile("image_content", filename)
+	fileWrite, err := bodyWrite.CreateFormFile("image_content", filepath)
 
 	_, err = io.Copy(fileWrite, file)
 	if err != nil {

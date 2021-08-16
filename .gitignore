@@ -1,2 +1,9 @@
+#Intellij idea
+.idea/
+/idea/
+*.ipr
+*.iml
+*.iws
+
 pem/
 *_test.go

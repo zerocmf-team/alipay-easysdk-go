@@ -7,7 +7,6 @@ package payment
 
 import (
 	"encoding/json"
-	"fmt"
 	"github.com/gincmf/alipayEasySdk/data"
 	"github.com/gincmf/alipayEasySdk/util"
 )
@@ -28,7 +27,7 @@ type pageResult struct {
 	Sign     string       `json:"sign"`
 }
 
-func (rest *Page) Create(bizContent map[string]interface{}) pageResult {
+func (rest *Page) Create(bizContent map[string]interface{}) string {
 
 	var b string = ""
 	if len(bizContent) > 0 {
@@ -37,12 +36,7 @@ func (rest *Page) Create(bizContent map[string]interface{}) pageResult {
 	}
 
 	params := util.GetParams("alipay.trade.page.pay", b)
-	data := util.GetResult(params)
+	url := util.GetRequestUrl(params)
 
-	fmt.Println(string(data))
-
-	result := pageResult{}
-	_ = json.Unmarshal(data, &result)
-
-	return result
+	return url
 }

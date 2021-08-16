@@ -55,7 +55,8 @@ func Sign(params map[string]string) (sign string, encode string) {
 	blocks, _ := pem.Decode(block)
 	privateKey, err := x509.ParsePKCS8PrivateKey(blocks.Bytes)
 	if err != nil {
-		panic(err.Error())
+		fmt.Println("err",err.Error())
+		return "",""
 	}
 
 	digest := h.Sum(nil)
@@ -91,6 +92,7 @@ func vSign(params string, sign string,t string) error {
 	pub, err := x509.ParsePKIXPublicKey(blocks.Bytes)
 	if err != nil {
 		fmt.Println("err", err.Error())
+		return err
 	}
 
 	h := sha256.New()

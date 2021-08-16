@@ -7,7 +7,6 @@ package merchant
 
 import (
 	"encoding/json"
-	"fmt"
 	"github.com/gincmf/alipayEasySdk/data"
 	"github.com/gincmf/alipayEasySdk/util"
 )
@@ -15,8 +14,34 @@ import (
 type Shop struct{}
 
 type shopQueryResult struct {
-	Response data.AlipayResponse `json:"ant_merchant_expand_shop_query_response"`
-	Sign     string              `json:"sign"`
+	Response shopQueryResponse `json:"ant_merchant_expand_shop_query_response"`
+	Sign     string            `json:"sign"`
+}
+
+type businessAddress struct {
+	CityCode     string `json:"city_code"`
+	DistrictCode string `json:"district_code"`
+	Address      string `json:"address"`
+	ProvinceCode string `json:"province_code"`
+	Poiid        string `json:"poiid,omitempty"`
+	Longitude    string `json:"longitude,omitempty"`
+	Latitude     string `json:"latitude,omitempty"`
+	Type         string `json:"type,omitempty"`
+}
+
+type shopQueryResponse struct {
+	data.AlipayResponse
+	ShopId          string            `json:"shop_id"`
+	BusinessAddress []businessAddress `json:"business_address"`
+	ShopCategory    string            `json:"shop_category"`
+	StoreId         string            `json:"store_id"`
+	ShopType        string            `json:"shop_type"`
+	IpRoleId        string            `json:"ip_role_id"`
+	ShopName        string            `json:"shop_name"`
+	ContactPhone    string            `json:"contact_phone,omitempty"`
+	ContactMobile   string            `json:"contact_mobile,omitempty"`
+	CertNo          string            `json:"cert_no,omitempty"`
+	NewShopCategory string            `json:"new_shop_category"`
 }
 
 type shopResponse struct {
@@ -45,7 +70,7 @@ type statusResponse struct {
 
 type shopStatusResult struct {
 	Response statusResponse `json:"ant_merchant_expand_order_query_response"`
-	Sign     string       `json:"sign"`
+	Sign     string         `json:"sign"`
 }
 
 // 企业信息
@@ -69,10 +94,12 @@ type BusinessTime struct {
 
 //联系人
 type ContactInfo struct {
-	Name   string `json:"name"`
-	Phone  string `json:"phone,omitempty"`
-	Mobile string `json:"mobile,omitempty"`
-	Email  string `json:"email,omitempty"`
+	Name   string   `json:"name"`
+	Phone  string   `json:"phone,omitempty"`
+	Mobile string   `json:"mobile,omitempty"`
+	Email  string   `json:"email,omitempty"`
+	Tag    []string `json:"tag"`
+	Type   string   `json:"type"`
 }
 
 /**
@@ -95,11 +122,7 @@ func (rest *Shop) Query(bizContent map[string]interface{}) shopQueryResult {
 
 	var result shopQueryResult
 
-	err := json.Unmarshal(data, &result)
-
-	if err != nil {
-		fmt.Println("query", err)
-	}
+	json.Unmarshal(data, &result)
 
 	return result
 }
@@ -165,8 +188,6 @@ func (rest *Shop) QueryStatus(bizContent map[string]interface{}) shopStatusResul
 
 	params := util.GetParams("ant.merchant.expand.order.query", b)
 	data := util.GetResult(params)
-
-	fmt.Println(string(data))
 
 	var result shopStatusResult
 	json.Unmarshal(data, &result)

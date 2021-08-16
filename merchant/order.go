@@ -7,7 +7,6 @@ package merchant
 
 import (
 	"encoding/json"
-	"fmt"
 	"github.com/gincmf/alipayEasySdk/data"
 	"github.com/gincmf/alipayEasySdk/util"
 )
@@ -36,8 +35,6 @@ func (rest *Order) Sync(bizContent map[string]interface{}) OrderSyncResult {
 
 	params := util.GetParams("alipay.merchant.order.sync", b)
 	data := util.GetResult(params)
-
-	fmt.Println(string(data))
 
 	var orderSyncResult OrderSyncResult
 	json.Unmarshal(data, &orderSyncResult)

@@ -20,11 +20,12 @@ type baseOptions struct {
 	Version            string `json:"version"`
 	PrivateKey         string `json:"private_key"`
 	PublicKey          string `json:"public_key"`
-	AliPublicKey       string `json:"public_key"`
+	AliPublicKey       string `json:"ali_public_key"`
 	AppCertPath        string `json:"app_cert_path"`
 	AlipayCertPath     string `json:"alipay_cert_path"`
 	AlipayRootCertPath string `json:"alipay_root_cert_path"`
 	NotifyUrl          string `json:"notify_url"`
+	EncryptType        string `json:"encrypt_type"`
 	EncryptKey         string `json:"encrypt_key"`
 	AppAuthToken       string `json:"app_auth_token"`
 }
@@ -42,31 +43,32 @@ func NewOptions(params map[string]string) baseOptions {
 		Version:            params["version"],
 		AlipayRootCertPath: params["alipayRootCertPath"],
 		NotifyUrl:          params["notifyUrl"],
+		EncryptType:        params["encryptType"],
 		EncryptKey:         params["encryptKey"],
 		AppAuthToken:       params["appAuthToken"],
 	}
 
-	if params["AppCertPath"] != "" {
-		privateData, err := ioutil.ReadFile(params["AppCertPath"] + "/private_key.pem")
+	if params["appCertPath"] != "" {
+		privateData, err := ioutil.ReadFile(params["appCertPath"] + "/private_key.pem")
 		if err != nil {
 			panic("读取私钥出错，文件不存在！")
 		}
 
 		options.PrivateKey = string(privateData)
 
-		publicData, err := ioutil.ReadFile(params["AppCertPath"] + "/public_key.pem")
+		publicData, err := ioutil.ReadFile(params["appCertPath"] + "/public_key.pem")
 		if err != nil {
 			panic("读取公钥钥出错，文件不存在！")
 		}
 
 		options.PublicKey = string(publicData)
 
-		options.AppCertPath = params["AppCertPath"]
+		options.AppCertPath = params["appCertPath"]
 
 	}
 
-	if params["AliCertPath"] != "" {
-		publicData, err := ioutil.ReadFile(params["AliCertPath"] + "/ali_public_key.pem")
+	if params["aliCertPath"] != "" {
+		publicData, err := ioutil.ReadFile(params["aliCertPath"] + "/ali_public_key.pem")
 		if err != nil {
 			panic("读取公钥钥出错，文件不存在！")
 		}
@@ -83,9 +85,9 @@ func SetOption(key string, val string) {
 	field.SetString(val)
 }
 
-func Options() *baseOptions {
+func Options() baseOptions {
 	if options != nil {
-		return options
+		return *options
 	}
-	return nil
+	panic("请先初始化options")
 }

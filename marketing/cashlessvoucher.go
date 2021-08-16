@@ -7,6 +7,7 @@ package marketing
 
 import (
 	"encoding/json"
+	"fmt"
 	"github.com/gincmf/alipayEasySdk/data"
 	"github.com/gincmf/alipayEasySdk/util"
 )
@@ -25,6 +26,11 @@ type VoucherCreateResult struct {
 
 type VoucherModifyResult struct {
 	Response alipayResponse `json:"alipay_marketing_cashlessvoucher_template_modify_response"`
+	Sign     string         `json:"sign"`
+}
+
+type VoucherDeleteResult struct {
+	Response alipayResponse `json:"alipay_marketing_voucher_template_delete_response"`
 	Sign     string         `json:"sign"`
 }
 
@@ -66,6 +72,36 @@ type RuleConf struct {
 	Store string `json:"STORE,omitempty"`
 }
 
+func (rest *CashlessVoucher) TemplateQuery(bizContent map[string]interface{}) {
+
+	var b string = ""
+	if len(bizContent) > 0 {
+		bytes, _ := json.Marshal(bizContent)
+		b = string(bytes)
+	}
+
+	params := util.GetParams("alipay.marketing.voucher.templatedetail.query", b)
+
+	data := util.GetResult(params)
+	fmt.Println(string(data))
+
+}
+
+func (rest *CashlessVoucher) Query(bizContent map[string]interface{}) {
+
+	var b string = ""
+	if len(bizContent) > 0 {
+		bytes, _ := json.Marshal(bizContent)
+		b = string(bytes)
+	}
+
+	params := util.GetParams("alipay.marketing.voucher.query", b)
+
+	data := util.GetResult(params)
+	fmt.Println(string(data))
+
+}
+
 /**
  * @Author return <1140444693@qq.com>
  * @Description 创建优惠券卡券模板
@@ -73,7 +109,7 @@ type RuleConf struct {
  * @Param
  * @return
  **/
-func (rest *CashlessVoucher) CreateTemplate(bizContent map[string]interface{}, voucherType string) VoucherCreateResult {
+func (rest *CashlessVoucher) CreateTemplate(bizContent map[string]interface{}, voucherType string,notify string) VoucherCreateResult {
 
 	var b string = ""
 	if len(bizContent) > 0 {
@@ -86,6 +122,9 @@ func (rest *CashlessVoucher) CreateTemplate(bizContent map[string]interface{}, v
 		params = util.GetParams("alipay.marketing.cashlessitemvoucher.template.create", b)
 	}
 
+	if notify != "" {
+		params["notify"] = notify
+	}
 	data := util.GetResult(params)
 
 	vr := VoucherCreateResult{}
