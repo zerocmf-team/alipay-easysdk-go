@@ -8,6 +8,7 @@ package logistics
 import (
 	"encoding/json"
 	"fmt"
+	"github.com/gincmf/alipayEasySdk/data"
 	"github.com/gincmf/alipayEasySdk/util"
 )
 
@@ -21,7 +22,24 @@ type MerchantShop struct {
  * @Param
  * @return
  **/
-func (rest *MerchantShop) Create(bizContent map[string]interface{}) {
+
+type shopAddResult struct {
+	createResponse `json:"alipay_open_instantdelivery_merchantshop_create_response"`
+}
+
+type logisticsShopStatus struct {
+	LogisticsCode string `json:"logistics_code"`
+	LogisticsName string `json:"logistics_name"`
+	Status        string `json:"status"`
+	AuditDesc     string `json:"audit_desc"`
+}
+
+type createResponse struct {
+	data.AlipayResponse
+	LogisticsShopStatus []logisticsShopStatus `json:"logistics_shop_status"`
+}
+
+func (rest *MerchantShop) Create(bizContent map[string]interface{}) shopAddResult {
 
 	var b string = ""
 	if len(bizContent) > 0 {
@@ -31,7 +49,13 @@ func (rest *MerchantShop) Create(bizContent map[string]interface{}) {
 
 	params := util.GetParams("alipay.open.instantdelivery.merchantshop.create", b)
 	data := util.GetResult(params)
-	fmt.Println("data", string(data))
+
+	var result shopAddResult
+
+	json.Unmarshal(data, &result)
+
+	return result
+
 }
 
 /**

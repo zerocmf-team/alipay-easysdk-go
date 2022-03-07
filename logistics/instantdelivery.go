@@ -9,6 +9,7 @@ import (
 	"encoding/json"
 	"fmt"
 	"github.com/gincmf/alipayEasySdk"
+	"github.com/gincmf/alipayEasySdk/data"
 	"github.com/gincmf/alipayEasySdk/util"
 )
 
@@ -41,7 +42,7 @@ func (rest *InstantDelivery) Query(bizContent map[string]interface{}) {
 
 	data := util.GetResult(paramsMap)
 
-	fmt.Println("data",string(data))
+	fmt.Println("data", string(data))
 }
 
 /**
@@ -51,7 +52,24 @@ func (rest *InstantDelivery) Query(bizContent map[string]interface{}) {
  * @Param
  * @return
  **/
-func (rest *InstantDelivery) AccountCreate(bizContent map[string]interface{}) {
+
+type LogisticsAccountStatus struct {
+	LogisticsCode string `json:"logistics_code"`
+	LogisticsName string `json:"logistics_name"`
+	Status        string `json:"status"`
+	AuditDesc     string `json:"audit_desc"`
+}
+
+type accountCreateResponse struct {
+	data.AlipayResponse
+	LogisticsAccountStatus []LogisticsAccountStatus `json:"logistics_account_status"`
+}
+
+type createResult struct {
+	accountCreateResponse `json:"alipay_open_instantdelivery_account_create_response"`
+}
+
+func (rest *InstantDelivery) AccountCreate(bizContent map[string]interface{}) createResult {
 	op := alipayEasySdk.Options()
 
 	var b string = ""
@@ -70,7 +88,12 @@ func (rest *InstantDelivery) AccountCreate(bizContent map[string]interface{}) {
 
 	data := util.GetResult(paramsMap)
 
-	fmt.Println("data",string(data))
+	result := createResult{}
+
+	json.Unmarshal(data, &result)
+
+	return result
+
 }
 
 /**
@@ -99,5 +122,5 @@ func (rest *InstantDelivery) AccountQuery(bizContent map[string]interface{}) {
 
 	data := util.GetResult(paramsMap)
 
-	fmt.Println("data",string(data))
+	fmt.Println("data", string(data))
 }
