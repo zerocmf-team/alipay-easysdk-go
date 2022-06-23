@@ -4,7 +4,7 @@
 ** @描述　　:
  */
 
-package utils
+package util
 
 import (
 	"bytes"

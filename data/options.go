@@ -7,24 +7,14 @@
 package data
 
 import (
-	"bytes"
-	"crypto"
-	"crypto/rsa"
-	"crypto/sha256"
-	"crypto/x509"
-	"encoding/base64"
-	"encoding/pem"
-	"github.com/zerocmf/alipayEasySdkGo/utils"
-	"net/url"
-	"sort"
+	"github.com/zerocmf/alipayEasySdkGo/util"
 	"strings"
-	"time"
 )
 
 // 公共请求参数
 
 type PublicParams struct {
-	AppId        string `json:"appId" sign:"app_id"'`
+	AppId        string `json:"app_id" sign:"app_id"`
 	Method       string `json:"method" sign:"method"`
 	Format       string `json:"format" sign:"format"`
 	Charset      string `json:"charset" sign:"charset"`
@@ -87,92 +77,13 @@ func GetOptions() *Options {
 
 /**
  * @Author return <1140444693@qq.com>
- * @Description 序列化参数并进行签名操作
- * @Date 2022/6/21 22:20:56
- * @Param
- * @return
- **/
-
-func (rest *Options) EncodeAndSign() (encode string) {
-
-	unix := time.Now().Unix() // 时间戳
-	time := time.Unix(unix, 0).Format("2006-01-02 15:04:05")
-	rest.Timestamp = time
-	sign, _ := rest.GenerateSign()
-	rest.Sign = sign
-
-	// 获取提交的参数列表
-	params := url.Values{}
-	json := utils.ReflectPtr(rest, "sign")
-
-	for k, v := range json {
-		value := []byte(v)
-		value = bytes.TrimSpace(value)
-		if string(value) != "" {
-			params.Set(k, string(value))
-		}
-	}
-	encode = params.Encode()
-	return
-
-}
-
-/**
- * @Author return <1140444693@qq.com>
- * @Description 对配置项进行签名操作
- * @Date 2022/6/21 22:23:19
- * @Param
- * @return
- **/
-
-func (rest *Options) GenerateSign() (sign string, encode string) {
-	//ksort 对参数进行排序
-
-	var keys []string
-	json := utils.ReflectPtr(rest, "sign")
-	for k := range json {
-		keys = append(keys, k)
-	}
-	sort.Strings(keys)
-
-	// 对参数进行序列化
-	pStr := make([]string, 0)
-	//拼接
-	for _, k := range keys {
-		v := []byte(json[k])
-		v = bytes.TrimSpace(v)
-		if string(v) != "" {
-			pStr = append(pStr, k+"="+json[k])
-		}
-	}
-
-	// 序列化结果
-	encode = strings.Join(pStr, "&")
-	h := sha256.New()
-	h.Write([]byte(encode))
-
-	block := []byte(rest.MerchantPrivateKey)
-	blocks, _ := pem.Decode(block)
-	privateKey, err := x509.ParsePKCS8PrivateKey(blocks.Bytes)
-	if err != nil {
-		return "", ""
-	}
-
-	digest := h.Sum(nil)
-	s, _ := rsa.SignPKCS1v15(nil, privateKey.(*rsa.PrivateKey), crypto.SHA256, digest)
-	sign = base64.StdEncoding.EncodeToString(s)
-	return
-}
-
-/**
- * @Author return <1140444693@qq.com>
  * @Description 配置代调用token
  * @Date 2022/6/22 0:53:25
  * @Param
  * @return
  **/
 
-func (rest *PublicParams) Agent(appAuthToken string) *PublicParams {
+func (rest *Options) Agent(appAuthToken string) *Options {
 	rest.AppAuthToken = appAuthToken
 	return rest
 }
@@ -190,6 +101,6 @@ func (rest *Options) Post(encode string) (data []byte, err error) {
 	baseUrl := rest.GatewayHost // 网关
 	url := protocol + "://" + baseUrl + "?" + encode
 	body := strings.NewReader(encode)
-	data, err = utils.Request("POST", url, body, nil)
+	data, err = util.Request("POST", url, body, nil)
 	return
 }

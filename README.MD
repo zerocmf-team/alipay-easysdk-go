@@ -8,7 +8,7 @@ dev1.0已完成，master版本正在重构中。代码更加规范，享受极�
 * Alipay Easy Go SDK :smiley:
 
 ```
-faceToFace := new(FaceToFace)
+faceToFace := new(payment.FaceToFace)
 faceToFace.Agent("202106BB21c6e8a21c7846caa2c39362a20ccX15")
 
 bizContent := make(map[string]interface{}, 0)
@@ -40,8 +40,8 @@ if err != nil {
 
 | 开发状态      | 能力类别      | 场景类别            | 接口方法名称                 | 调用的OpenAPI名称                                              |
 |-----------|-----------|-----------------|------------------------|-----------------------------------------------------------|
-| 开发中... | Base<br/>基础能力      | OAuth<br/>用户授权           | getToken<br/>获取授权访问令牌和用户user_id               | alipay\.system\.oauth\.token                              |
-| 开发中... | Base<br/>基础能力     | OAuth<br/>用户授权           | refreshToken<br/>刷新授权访问令牌           | alipay\.system\.oauth\.token                              |
+| - [x] 已完成 | Base<br/>基础能力      | OAuth<br/>用户授权           | getToken<br/>获取授权访问令牌和用户user_id               | alipay\.system\.oauth\.token                              |
+| - [x] 已完成 | Base<br/>基础能力     | OAuth<br/>用户授权           | refreshToken<br/>刷新授权访问令牌           | alipay\.system\.oauth\.token                              |
 | 开发中... | Base<br/>基础能力      | Qrcode<br/>小程序二维码          | create<br/>创建小程序二维码                 | alipay\.open\.app\.qrcode\.create                         |
 | 开发中... | Base<br/>基础能力      | Image<br/>图片           | upload<br/>上传门店照片                 | alipay\.offline\.material\.image\.upload                  |
 | 开发中... | Base<br/>基础能力      | Video<br/>视频           | upload<br/>上传门店视频                 | alipay\.offline\.material\.image\.upload                  |
