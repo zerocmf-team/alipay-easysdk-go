@@ -15,6 +15,7 @@ import (
 
 func TestNewFaceToFace(t *testing.T) {
 	options := alipayEasySdkGo.GetOptions()
+	options.AppId = "2021001192664075"
 	data.SetOptions(options)
 
 	faceToFace := new(FaceToFace)

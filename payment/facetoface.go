@@ -37,6 +37,7 @@ type preCreateResponse struct {
  **/
 
 func (rest *FaceToFace) PreCrete(bizContent map[string]interface{}) (result PreCreateResult, err error) {
+
 	config := data.GetOptions()
 	options := new(FaceToFace)
 	copier.Copy(&options, &config)
@@ -44,11 +45,7 @@ func (rest *FaceToFace) PreCrete(bizContent map[string]interface{}) (result PreC
 	options.Method = "alipay.trade.precreate"
 	bizBytes, _ := json.Marshal(bizContent)
 	options.BizContent = string(bizBytes)
-
-	params := util.ReflectPtr(options,"sign")
-	encode := util.EncodeAndSign(options.MerchantPrivateKey,params)
-	data, err := options.Post(encode)
-
+	data, err := util.Post(options)
 	json.Unmarshal(data, &result)
 	return
 }

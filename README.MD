@@ -42,7 +42,7 @@ if err != nil {
 |-----------|-----------|-----------------|------------------------|-----------------------------------------------------------|
 | * [x] 已完成 | Base<br/>基础能力      | OAuth<br/>用户授权           | getToken<br/>获取授权访问令牌和用户user_id               | alipay\.system\.oauth\.token                              |
 | * [x] 已完成 | Base<br/>基础能力     | OAuth<br/>用户授权           | refreshToken<br/>刷新授权访问令牌           | alipay\.system\.oauth\.token                              |
-| * [ ] 开发中... | Base<br/>基础能力      | Qrcode<br/>小程序二维码          | create<br/>创建小程序二维码                 | alipay\.open\.app\.qrcode\.create                         |
+| * [x] 开发中... | Base<br/>基础能力      | Qrcode<br/>小程序二维码          | create<br/>创建小程序二维码                 | alipay\.open\.app\.qrcode\.create                         |
 | * [ ] 开发中... | Base<br/>基础能力      | Image<br/>图片           | upload<br/>上传门店照片                 | alipay\.offline\.material\.image\.upload                  |
 | * [ ] 开发中... | Base<br/>基础能力      | Video<br/>视频           | upload<br/>上传门店视频                 | alipay\.offline\.material\.image\.upload                  |
 | * [ ] 开发中... | Member<br/>会员能力    | Identification<br/>支付宝身份认证  | init<br/>身份认证初始化                   | alipay\.user\.certify\.open\.initialize                   |

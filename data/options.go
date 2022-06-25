@@ -6,11 +6,6 @@
 
 package data
 
-import (
-	"github.com/zerocmf/alipayEasySdkGo/util"
-	"strings"
-)
-
 // 公共请求参数
 
 type PublicParams struct {
@@ -86,21 +81,4 @@ func GetOptions() *Options {
 func (rest *Options) Agent(appAuthToken string) *Options {
 	rest.AppAuthToken = appAuthToken
 	return rest
-}
-
-/**
- * @Author return <1140444693@qq.com>
- * @Description 基于请求库的阿里post请求封装
- * @Date 2022/6/22 8:19:18
- * @Param
- * @return
- **/
-
-func (rest *Options) Post(encode string) (data []byte, err error) {
-	protocol := rest.Protocol   // 协议
-	baseUrl := rest.GatewayHost // 网关
-	url := protocol + "://" + baseUrl + "?" + encode
-	body := strings.NewReader(encode)
-	data, err = util.Request("POST", url, body, nil)
-	return
 }
