@@ -15,10 +15,11 @@ import (
 
 func TestNewFaceToFace(t *testing.T) {
 	options := alipayEasySdkGo.GetOptions()
+	options.AppId = "2021001192664075"
 	data.SetOptions(options)
 
 	faceToFace := new(FaceToFace)
-	faceToFace.Agent("202106BB21c6e8a21c7846caa2c39362a20ccX15")
+	faceToFace.Agent("202105BBcf3de5e5472d4111acc38b70ca40bX61")
 
 	bizContent := make(map[string]interface{}, 0)
 	bizContent["out_trade_no"] = "20240320010101029"
@@ -37,6 +38,7 @@ func TestNewFaceToFace(t *testing.T) {
 
 	result, err := faceToFace.PreCrete(bizContent)
 	if err != nil {
-		fmt.Println("result", result)
+		fmt.Println("err",err.Error())
 	}
+	fmt.Println("result", result)
 }

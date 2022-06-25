@@ -4,15 +4,18 @@
 ** @描述　　:
  */
 
-package utils
+package util
 
 import (
 	"bytes"
 	"compress/gzip"
 	"fmt"
+	"github.com/jinzhu/copier"
+	"github.com/zerocmf/alipayEasySdkGo/data"
 	"io"
 	"io/ioutil"
 	"net/http"
+	"strings"
 )
 
 /**
@@ -86,3 +89,23 @@ func Request(method string, url string, body io.Reader, header map[string]string
 	return
 }
 
+/**
+ * @Author return <1140444693@qq.com>
+ * @Description 统一封装post请求
+ * @Date 2022/6/25 16:18:51
+ * @Param
+ * @return
+ **/
+
+func Post(options interface{}) (resp []byte, err error) {
+	params := ReflectPtr(options, "sign")
+	ops := data.GetOptions()
+	copier.Copy(&ops, &options)
+	encode := EncodeAndSign(ops.MerchantPrivateKey, params)
+	protocol := ops.Protocol   // 协议
+	baseUrl := ops.GatewayHost // 网关
+	url := protocol + "://" + baseUrl + "?" + encode
+	body := strings.NewReader(encode)
+	resp, err = Request("POST", url, body, nil)
+	return
+}

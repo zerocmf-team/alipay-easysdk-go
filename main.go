@@ -11,9 +11,14 @@ import (
 	"io/ioutil"
 )
 
+func init()  {
+	options := GetOptions()
+	options.AppId = "2021001192664075"
+	data.SetOptions(options)
+}
+
 func GetOptions() *data.Options {
 	config := new(data.Options)
-	config.AppId = "2021001192664075"
 	privateData, err := ioutil.ReadFile("../pem/private_key.pem")
 	if err != nil {
 		panic("读取私钥出错，文件不存在！")

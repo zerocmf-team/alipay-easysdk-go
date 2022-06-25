@@ -8,13 +8,13 @@ package payment
 
 import (
 	"encoding/json"
+	"github.com/jinzhu/copier"
 	"github.com/zerocmf/alipayEasySdkGo/data"
+	"github.com/zerocmf/alipayEasySdkGo/util"
 )
 
-// 面对面类
-
 type FaceToFace struct {
-	data.PublicParams
+	data.Options
 }
 
 type PreCreateResult struct {
@@ -36,14 +36,16 @@ type preCreateResponse struct {
  * @return
  **/
 
-func (rest *FaceToFace) PreCrete(bizContent map[string]interface{}) (result PreCreateResult,err error) {
-	options := data.GetOptions()
+func (rest *FaceToFace) PreCrete(bizContent map[string]interface{}) (result PreCreateResult, err error) {
+
+	config := data.GetOptions()
+	options := new(FaceToFace)
+	copier.Copy(&options, &config)
 	options.AppAuthToken = rest.AppAuthToken
 	options.Method = "alipay.trade.precreate"
 	bizBytes, _ := json.Marshal(bizContent)
 	options.BizContent = string(bizBytes)
-	encode := options.EncodeAndSign()
-	data, err := options.Post(encode)
-	json.Unmarshal(data,&result)
+	data, err := util.Post(options)
+	json.Unmarshal(data, &result)
 	return
 }
