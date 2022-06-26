@@ -8,9 +8,9 @@ package base
 
 import (
 	"fmt"
-	"github.com/zerocmf/alipayEasySdkGo"
-	_ "github.com/zerocmf/alipayEasySdkGo"
-	"github.com/zerocmf/alipayEasySdkGo/data"
+	"github.com/daifuyang/alipayEasySdkGo"
+	_ "github.com/daifuyang/alipayEasySdkGo"
+	"github.com/daifuyang/alipayEasySdkGo/data"
 	"net/url"
 	"testing"
 )
@@ -52,4 +52,14 @@ func TestQrcode_Create(t *testing.T) {
 
 	fmt.Println("resp", resp)
 
+}
+
+func TestImage_Upload(t *testing.T) {
+	options := alipayEasySdkGo.GetOptions()
+	options.AppId = "2021001192664075"
+	data.SetOptions(options)
+	image := new(Image)
+	image.Agent("202105BBcf3de5e5472d4111acc38b70ca40bX61")
+	filepath := "/Users/return/workspace/yijing/changsanjiao/src/assets/images/stepSecond/1.png"
+	image.Upload("testName",filepath)
 }

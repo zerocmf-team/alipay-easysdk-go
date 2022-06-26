@@ -1,4 +1,4 @@
-module github.com/zerocmf/alipayEasySdkGo
+module github.com/daifuyang/alipayEasySdkGo
 
 go 1.17
 

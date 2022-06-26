@@ -9,9 +9,9 @@ package base
 import (
 	"encoding/json"
 	"errors"
+	"github.com/daifuyang/alipayEasySdkGo/data"
+	"github.com/daifuyang/alipayEasySdkGo/util"
 	"github.com/jinzhu/copier"
-	"github.com/zerocmf/alipayEasySdkGo/data"
-	"github.com/zerocmf/alipayEasySdkGo/util"
 )
 
 type Oauth struct {
