@@ -52,7 +52,7 @@ type oauthResponse struct {
 
 // alipay.system.oauth.token
 
-func (rest *Oauth) GetToken(code string) (resp oauthResult, err error) {
+func (rest *Oauth) GetToken(code string) (resp *oauthResult, err error) {
 	grantType := "authorization_code"
 	resp, err = rest.token(grantType, code)
 	return
@@ -66,36 +66,43 @@ func (rest *Oauth) GetToken(code string) (resp oauthResult, err error) {
  * @return
  **/
 
-func (rest *Oauth) Refresh(refreshToken string) (res oauthResult, err error) {
+func (rest *Oauth) Refresh(refreshToken string) (res *oauthResult, err error) {
 	grantType := "refresh_token"
 	res, err = rest.token(grantType, refreshToken)
 	return
 }
 
 // 封装统一token请求
-func (rest *Oauth) token(grantType string, code string) (res oauthResult, err error) {
+func (rest *Oauth) token(grantType string, code string) (res *oauthResult, err error) {
 	//  获取通用公共参数
 	config := data.GetOptions()
 	options := new(Oauth)
-	copier.Copy(&options, &config)
+	err = copier.Copy(&options, &config)
+	if err != nil {
+		return
+	}
 	options.AppAuthToken = rest.AppAuthToken
 	// 组合请求参数
 	options.Method = "alipay.system.oauth.token"
 	options.GrantType = grantType
 	options.Code = code
-	data, err := util.Post(options)
+	resp, err := util.Post(options)
 	if err != nil {
 		return
 	}
-
 	errResp := new(errResult)
-	json.Unmarshal(data, &errResp)
+	err = json.Unmarshal(resp, &errResp)
+	if err != nil {
+		return
+	}
 	if errResp.Response.Code != "" {
 		err = errors.New(errResp.Response.SubCode + "：" + errResp.Response.SubMsg)
 		return
 	}
-
-	json.Unmarshal(data, &res)
+	err = json.Unmarshal(resp, &res)
+	if err != nil {
+		return
+	}
 	return
 
 }

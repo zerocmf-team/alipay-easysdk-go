@@ -5,6 +5,7 @@
 dev1.0已完成，master版本正在重构中。代码更加规范，享受极简编程
 
 ## 代码示例
+
 * Alipay Easy Go SDK :smiley:
 
 ```
@@ -38,9 +39,9 @@ if err != nil {
 
 ## 支持的API列表
 
-| 开发状态      | 能力类别      | 场景类别            | 接口方法名称                 | 调用的OpenAPI名称                                              |
-|-----------|-----------|-----------------|------------------------|-----------------------------------------------------------|
-|  已完成 | Base<br/>基础能力      | OAuth<br/>用户授权           | getToken<br/>获取授权访问令牌和用户user_id               | alipay\.system\.oauth\.token                              |
+|  开发状态   | 能力类别      | 场景类别            | 接口方法名称                 | 调用的OpenAPI名称                                              |
+|------------|-----------|-----------------|------------------------|-----------------------------------------------------------|
+|  已完成   | Base<br/>基础能力      | OAuth<br/>用户授权           | getToken<br/>获取授权访问令牌和用户user_id               | alipay\.system\.oauth\.token                              |
 |  已完成 | Base<br/>基础能力     | OAuth<br/>用户授权           | refreshToken<br/>刷新授权访问令牌           | alipay\.system\.oauth\.token                              |
 |  已完成 | Base<br/>基础能力      | Qrcode<br/>小程序二维码          | create<br/>创建小程序二维码                 | alipay\.open\.app\.qrcode\.create                         |
 |  已完成 | Base<br/>基础能力      | Image<br/>图片           | upload<br/>上传门店照片                 | alipay\.offline\.material\.image\.upload                  |
@@ -63,10 +64,10 @@ if err != nil {
 | * [ ] 开发中... | Payment<br/>支付能力   | Page<br/>电脑网站            | pay<br/>生成交易表单，渲染后自动跳转支付宝网站引导用户完成支付                    | alipay\.trade\.page\.pay                                  |
 | * [ ] 开发中... | Payment<br/>支付能力   | Wap<br/>手机网站             | pay<br/>生成交易表单，渲染后自动跳转支付宝网站引导用户完成支付                    | alipay\.trade\.wap\.pay                                   |
 | * [ ] 开发中... | Security<br/>安全能力  | TextRisk<br/>文本内容安全        | detect<br/>检测内容风险                 | alipay\.security\.risk\.content\.detect                   |
-| * [ ] 开发中... | Marketing<br/>营销能力 | Pass<br/>支付宝卡包            | createTemplate<br/>卡券模板创建         | alipay\.pass\.template\.add                               |
-| * [ ] 开发中... | Marketing<br/>营销能力 | Pass<br/>支付宝卡包            | updateTemplate<br/>卡券模板更新         | alipay\.pass\.template\.update                            |
-| * [ ] 开发中... | Marketing<br/>营销能力 | Pass<br/>支付宝卡包            | addInstance<br/>卡券实例发放            | alipay\.pass\.instance\.add                               |
-| * [ ] 开发中... | Marketing<br/>营销能力 | Pass<br/>支付宝卡包            | updateInstance<br/>卡券实例更新         | alipay\.pass\.instance\.update                            |
+| 已完成 | Marketing<br/>营销能力 | Pass<br/>支付宝卡包            | createTemplate<br/>卡券模板创建         | alipay\.pass\.template\.add                               |
+| 已完成 | Marketing<br/>营销能力 | Pass<br/>支付宝卡包            | updateTemplate<br/>卡券模板更新         | alipay\.pass\.template\.update                            |
+| 已完成 | Marketing<br/>营销能力 | Pass<br/>支付宝卡包            | addInstance<br/>卡券实例发放            | alipay\.pass\.instance\.add                               |
+| 已完成 | Marketing<br/>营销能力 | Pass<br/>支付宝卡包            | updateInstance<br/>卡券实例更新         | alipay\.pass\.instance\.update                            |
 | * [ ] 开发中... | Marketing<br/>营销能力 | TemplateMessage<br/>小程序模板消息 | send <br/>发送模板消息| alipay\.open\.app\.mini\.templatemessage\.send            |
 | * [ ] 开发中... | Marketing<br/>营销能力 | OpenLife<br/>生活号        | createImageTextContent<br/>创建图文消息内容 | alipay\.open\.public\.message\.content\.create            |
 | * [ ] 开发中... | Marketing<br/>营销能力 | OpenLife<br/>生活号        | modifyImageTextContent<br/>更新图文消息内容 | alipay\.open\.public\.message\.content\.modify            |
@@ -82,11 +83,13 @@ if err != nil {
 
 > 注：更多高频场景的API持续更新中，敬请期待。
 
- # 变更日志
+# 变更日志
 
- # 相关
+# 相关
+
 * [支付宝开放平台](https://open.alipay.com/platform/home.htm)
 * [支付宝开放平台文档中心](https://docs.open.alipay.com/catalog)
 
 # 交流与技术支持
+
 请通过github本身的issue功能进行反馈。

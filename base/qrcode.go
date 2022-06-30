@@ -14,10 +14,10 @@ import (
 )
 
 type QrOption struct {
-	f func(*Optional)
+	f func(*optional)
 }
 
-type Optional struct {
+type optional struct {
 	Color string `json:"color,omitempty" sign:"color,omitempty"`
 	Size  string `json:"size,omitempty" sign:"size,omitempty"`
 }
@@ -43,13 +43,13 @@ const M = "m"
 const L = "l"
 
 func (rest *Qrcode) WithColor(color string) QrOption {
-	return QrOption{func(o *Optional) {
+	return QrOption{func(o *optional) {
 		o.Color = color
 	}}
 }
 
 func (rest *Qrcode) WithSize(size string) QrOption {
-	return QrOption{func(o *Optional) {
+	return QrOption{func(o *optional) {
 		o.Size = size
 	}}
 }
@@ -64,22 +64,25 @@ func (rest *Qrcode) WithSize(size string) QrOption {
  * @return 可前往alipay.open.app.qrcode.create查看更加详细的参数说明。
  **/
 
-func (rest *Qrcode) Create(urlParam string, queryParam string, describe string, ops ...QrOption) (resp qrcodeResult, err error) {
+func (rest *Qrcode) Create(urlParam string, queryParam string, describe string, ops ...QrOption) (res *qrcodeResult, err error) {
 
 	config := data.GetOptions()
 	options := new(Qrcode)
-	copier.Copy(&options, &config)
+	err = copier.Copy(&options, &config)
+	if err != nil {
+		return
+	}
 
 	options.AppAuthToken = rest.AppAuthToken
 	// 组合请求参数
 	options.Method = "alipay.open.app.qrcode.create"
 
 	bizContent := make(map[string]interface{}, 0)
-	bizContent["query_param"] = "store_number=487934091&desk_id=3"
-	bizContent["describe"] = "扫码点单"
-	bizContent["url_param"] = "pages/store/index"
+	bizContent["query_param"] = describe
+	bizContent["describe"] = queryParam
+	bizContent["url_param"] = urlParam
 
-	opt := new(Optional)
+	opt := new(optional)
 	for _, o := range ops {
 		o.f(opt)
 	}
@@ -93,10 +96,13 @@ func (rest *Qrcode) Create(urlParam string, queryParam string, describe string, 
 	bizBytes, _ := json.Marshal(bizContent)
 	options.BizContent = string(bizBytes)
 
-	data, err := util.Post(options)
+	resp, err := util.Post(options)
 	if err != nil {
 		return
 	}
-	json.Unmarshal(data, &resp)
+	err = json.Unmarshal(resp, &resp)
+	if err != nil {
+		return
+	}
 	return
 }
