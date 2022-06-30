@@ -10,13 +10,21 @@ import (
 	"bytes"
 	"compress/gzip"
 	"fmt"
+	"github.com/daifuyang/alipayEasySdkGo/data"
 	"github.com/jinzhu/copier"
-	"github.com/zerocmf/alipayEasySdkGo/data"
 	"io"
 	"io/ioutil"
 	"net/http"
-	"strings"
 )
+
+type Options struct {
+	f func(*reqOptions)
+}
+
+type reqOptions struct {
+	body   io.Reader
+	header map[string]string
+}
 
 /**
  * @Author return <1140444693@qq.com>
@@ -97,15 +105,36 @@ func Request(method string, url string, body io.Reader, header map[string]string
  * @return
  **/
 
-func Post(options interface{}) (resp []byte, err error) {
+func Post(options interface{}, ops ...Options) (resp []byte, err error) {
+
 	params := ReflectPtr(options, "sign")
-	ops := data.GetOptions()
-	copier.Copy(&ops, &options)
-	encode := EncodeAndSign(ops.MerchantPrivateKey, params)
-	protocol := ops.Protocol   // 协议
-	baseUrl := ops.GatewayHost // 网关
+	dOps := data.GetOptions()
+	copier.Copy(&dOps, &options)
+	encode := EncodeAndSign(dOps.MerchantPrivateKey, params)
+	protocol := dOps.Protocol   // 协议
+	baseUrl := dOps.GatewayHost // 网关
 	url := protocol + "://" + baseUrl + "?" + encode
-	body := strings.NewReader(encode)
-	resp, err = Request("POST", url, body, nil)
+
+	reqOps := new(reqOptions)
+	for _, v := range ops {
+		v.f(reqOps)
+	}
+
+	body := reqOps.body
+	header := reqOps.header
+
+	resp, err = Request("POST", url, body, header)
 	return
+}
+
+func WithBody(body io.Reader) Options {
+	return Options{func(o *reqOptions) {
+		o.body = body
+	}}
+}
+
+func WithHeader(header map[string]string) Options {
+	return Options{func(o *reqOptions) {
+		o.header = header
+	}}
 }

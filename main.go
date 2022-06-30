@@ -7,7 +7,7 @@
 package alipayEasySdkGo
 
 import (
-	"github.com/zerocmf/alipayEasySdkGo/data"
+	"github.com/daifuyang/alipayEasySdkGo/data"
 	"io/ioutil"
 )
 

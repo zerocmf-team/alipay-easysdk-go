@@ -8,8 +8,8 @@ package payment
 
 import (
 	"fmt"
-	"github.com/zerocmf/alipayEasySdkGo"
-	"github.com/zerocmf/alipayEasySdkGo/data"
+	"github.com/daifuyang/alipayEasySdkGo"
+	"github.com/daifuyang/alipayEasySdkGo/data"
 	"testing"
 )
 
