@@ -7,18 +7,53 @@
 package util
 
 import (
+	"bytes"
 	"crypto"
 	"crypto/rsa"
 	"crypto/sha256"
 	"crypto/x509"
 	"encoding/base64"
 	"encoding/pem"
+	"fmt"
+	"github.com/daifuyang/alipayEasySdkGo/data"
 	"net/url"
 	"reflect"
 	"sort"
 	"strings"
 	"time"
 )
+
+
+/**
+ * @Author return <1140444693@qq.com>
+ * @Description 序列化参数
+ * @Date 2022/6/28 8:34:2
+ * @Param
+ * @return
+ **/
+
+func SortEncode(params map[string]string) (encode string) {
+	// ksort 对参数进行排序
+	var keys []string
+	for k := range params {
+		keys = append(keys, k)
+	}
+	sort.Strings(keys)
+
+	// 对参数进行序列化
+	pStr := make([]string, 0)
+	//拼接
+	for _, k := range keys {
+		v := []byte(params[k])
+		v = bytes.TrimSpace(v)
+		if string(v) != "" {
+			pStr = append(pStr, k+"="+params[k])
+		}
+	}
+	// 序列化结果
+	encode = strings.Join(pStr, "&")
+	return encode
+}
 
 /**
  * @Author return <1140444693@qq.com>
@@ -55,24 +90,8 @@ func EncodeAndSign(merchantPrivateKey string, params map[string]string) (encode 
  **/
 
 func GenerateSign(merchantPrivateKey string, params map[string]string) (sign string, err error) {
-	//ksort 对参数进行排序
 
-	var keys []string
-	for k := range params {
-		keys = append(keys, k)
-	}
-	sort.Strings(keys)
-
-	// 对参数进行序列化
-	pStr := make([]string, 0)
-	//拼接
-	for _, k := range keys {
-		v := params[k]
-		v = strings.TrimSpace(v)
-		if string(v) != "" {
-			pStr = append(pStr, k+"="+params[k])
-		}
-	}
+	encode := SortEncode(params)
 
 	block := []byte(merchantPrivateKey)
 	blocks, _ := pem.Decode(block)
@@ -81,12 +100,50 @@ func GenerateSign(merchantPrivateKey string, params map[string]string) (sign str
 		return
 	}
 
-	encode := strings.Join(pStr, "&")
 	h := sha256.New()
 	h.Write([]byte(encode))
 	digest := h.Sum(nil)
 	s, _ := rsa.SignPKCS1v15(nil, privateKey.(*rsa.PrivateKey), crypto.SHA256, digest)
 	sign = base64.StdEncoding.EncodeToString(s)
+	return
+}
+
+/**
+ * @Author return <1140444693@qq.com>
+ * @Description 验签
+ * @Date 2022/6/27 22:7:3
+ * @Param
+ * @return
+ **/
+
+func VerifyNotify(params string, sign string, pkType string) (err error) {
+	options := data.GetOptions()
+	signByte, err := base64.StdEncoding.DecodeString(sign)
+	if err != nil {
+		fmt.Println("sign err", err.Error())
+		return
+	}
+
+	block := []byte(options.MerchantPublicKey)
+	if pkType == "alipay" {
+		block = []byte(options.AlipayPublicKey)
+	}
+
+	blocks, _ := pem.Decode(block)
+	pub, err := x509.ParsePKIXPublicKey(blocks.Bytes)
+	if err != nil {
+		fmt.Println("err", err.Error())
+		return
+	}
+
+	h := sha256.New()
+	h.Write([]byte(params))
+	digest := h.Sum(nil)
+	err = rsa.VerifyPKCS1v15(pub.(*rsa.PublicKey), crypto.SHA256, digest, signByte)
+	if err != nil {
+		fmt.Println("err", err)
+		return
+	}
 	return
 }
 

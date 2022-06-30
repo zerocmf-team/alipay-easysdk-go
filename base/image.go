@@ -8,6 +8,7 @@ package base
 
 import (
 	"bytes"
+	"encoding/json"
 	"fmt"
 	"github.com/daifuyang/alipayEasySdkGo/data"
 	"github.com/daifuyang/alipayEasySdkGo/util"
@@ -33,15 +34,28 @@ type AssetsParams struct {
 	ImagePid     string `json:"image_pid,omitempty" sign:"image_type,omitempty"`
 }
 
-func (rest *Image) Upload(imageName string, imageFilePath string, imagePid ...string) {
-	rest.upload("jpg", imageName, imageFilePath, imagePid...)
+type uploadResult struct {
+	Response uploadResponse `json:"alipay_offline_material_image_upload_response"`
+	data.Sign
 }
 
-func (rest *Video) Upload(videoName string, videoFilePath string, imagePid ...string) {
-	rest.upload("mp4", videoName, videoFilePath, imagePid...)
+type uploadResponse struct {
+	data.PublicParams
+	ImageId  string `json:"image_id"`
+	ImageUrl string `json:"image_url"`
 }
 
-func (rest *Image) upload(imageType string, imageName string, imageFilePath string, imagePid ...string) {
+func (rest *Image) Upload(imageName string, imageFilePath string, imagePid ...string) (res uploadResult, err error) {
+	res,err = rest.upload("jpg", imageName, imageFilePath, imagePid...)
+	return
+}
+
+func (rest *Video) Upload(videoName string, videoFilePath string, imagePid ...string) (res uploadResult, err error) {
+	res,err = rest.upload("mp4", videoName, videoFilePath, imagePid...)
+	return
+}
+
+func (rest *Image) upload(imageType string, imageName string, imageFilePath string, imagePid ...string) (res uploadResult, err error) {
 	config := data.GetOptions()
 	options := new(Image)
 	copier.Copy(&options, &config)
@@ -79,12 +93,14 @@ func (rest *Image) upload(imageType string, imageName string, imageFilePath stri
 	header["Content-Type"] = bodyWrite.FormDataContentType()
 	bodyWrite.Close()
 
-	resp, err := util.Post(options, util.WithBody(bodyBuf), util.WithHeader(header))
+	data, err := util.Post(options, util.WithBody(bodyBuf), util.WithHeader(header))
 	if err != nil {
 		fmt.Println("err", err)
 		return
 	}
 
-	fmt.Println("resp", string(resp))
+	json.Unmarshal(data, &res)
+
+	return
 
 }

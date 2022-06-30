@@ -21,12 +21,12 @@ type Oauth struct {
 	RefreshToken string `json:"refresh_token" sign:"refresh_token,omitempty"`
 }
 
-type OauthResult struct {
+type oauthResult struct {
 	Response oauthResponse `json:"alipay_system_oauth_token_response"`
 	data.Sign
 }
 
-type ErrResult struct {
+type errResult struct {
 	Response data.AlipayResponse `json:"error_response"`
 	data.Sign
 }
@@ -52,7 +52,7 @@ type oauthResponse struct {
 
 // alipay.system.oauth.token
 
-func (rest *Oauth) GetToken(code string) (resp OauthResult, err error) {
+func (rest *Oauth) GetToken(code string) (resp oauthResult, err error) {
 	grantType := "authorization_code"
 	resp, err = rest.token(grantType, code)
 	return
@@ -66,14 +66,14 @@ func (rest *Oauth) GetToken(code string) (resp OauthResult, err error) {
  * @return
  **/
 
-func (rest *Oauth) Refresh(refreshToken string) (resp OauthResult, err error) {
+func (rest *Oauth) Refresh(refreshToken string) (res oauthResult, err error) {
 	grantType := "refresh_token"
-	resp, err = rest.token(grantType, refreshToken)
+	res, err = rest.token(grantType, refreshToken)
 	return
 }
 
 // 封装统一token请求
-func (rest *Oauth) token(grantType string, code string) (resp OauthResult, err error) {
+func (rest *Oauth) token(grantType string, code string) (res oauthResult, err error) {
 	//  获取通用公共参数
 	config := data.GetOptions()
 	options := new(Oauth)
@@ -88,14 +88,14 @@ func (rest *Oauth) token(grantType string, code string) (resp OauthResult, err e
 		return
 	}
 
-	errResp := new(ErrResult)
+	errResp := new(errResult)
 	json.Unmarshal(data, &errResp)
 	if errResp.Response.Code != "" {
 		err = errors.New(errResp.Response.SubCode + "：" + errResp.Response.SubMsg)
 		return
 	}
 
-	json.Unmarshal(data, &resp)
+	json.Unmarshal(data, &res)
 	return
 
 }

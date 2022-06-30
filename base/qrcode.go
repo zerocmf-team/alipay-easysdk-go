@@ -26,12 +26,12 @@ type Qrcode struct {
 	data.Options
 }
 
-type QrcodeResult struct {
-	Response QrcodeResponse `json:"alipay_open_app_qrcode_create_response"`
+type qrcodeResult struct {
+	Response qrcodeResponse `json:"alipay_open_app_qrcode_create_response"`
 	data.Sign
 }
 
-type QrcodeResponse struct {
+type qrcodeResponse struct {
 	data.AlipayResponse
 	QrCodeUrl            string `json:"qr_code_url"`
 	QrCodeUrlCircleWhite string `json:"qr_code_url_circle_white,omitempty"`
@@ -64,7 +64,7 @@ func (rest *Qrcode) WithSize(size string) QrOption {
  * @return 可前往alipay.open.app.qrcode.create查看更加详细的参数说明。
  **/
 
-func (rest *Qrcode) Create(urlParam string, queryParam string, describe string, ops ...QrOption) (resp QrcodeResult, err error) {
+func (rest *Qrcode) Create(urlParam string, queryParam string, describe string, ops ...QrOption) (resp qrcodeResult, err error) {
 
 	config := data.GetOptions()
 	options := new(Qrcode)
